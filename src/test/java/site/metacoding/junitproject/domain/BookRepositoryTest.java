@@ -18,14 +18,14 @@ public class BookRepositoryTest {
 
     @BeforeEach // 테스트 시작전에 한번만 실행
     public void 데이터준비(){
-        String title = "junit5";
-        String author = "메타코딩";
+        String title = "junit";
+        String author = "겟인데어";
         Book book = Book.builder()
         .title(title)
         .author(author)
         .build();
         bookRepository.save(book);
-    }
+    } // 트랜잭션 종료 됐다면 !! 
 
     // 1. 책 등록
     @Test
@@ -55,15 +55,17 @@ public class BookRepositoryTest {
           // given (데이터 준비)
           String title = "junit5";
           String author = "메타코딩";
-          Book book = Book.builder()
-          .title(title)
-          .author(author)
-          .build();
-          bookRepository.save(book);
+        //   Book book = Book.builder()
+        //   .title(title)
+        //   .author(author)
+        //   .build();
+        //   bookRepository.save(book);
 
 
         // when
         List<Book> booksPS = bookRepository.findAll();
+
+        System.out.println("================ size() : "+booksPS.size());
 
         // then
         assertEquals("junit5", booksPS.get(0).getTitle());
